@@ -1,6 +1,6 @@
 {
   "name": "ep_hbp_collaboratory_auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provides authentication with HBP and authorization through collab context",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/HumanBrainProject/ep_hbp_collaboratory_auth#readme",
   "peerDependencies": {
-    "ep_oauth2": "^0.1.1"
+    "ep_oauth2": "^0.1.2"
   },
   "engines": {
     "node": ">= 0.12"

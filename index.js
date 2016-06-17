@@ -1,8 +1,7 @@
 var request = require('request');
 var uuid4 = require('uuid4');
 
-function is_collab_member(token, ctx, cb) {
-  // 42e50c55-1bca-4862-85d9-b3fc11da0f85
+function has_collab_permission(token, ctx, permission, cb) {
   console.log('ep_hbp_collaboratory_auth.is_collab_member request', ctx);
   var url = 'https://services.humanbrainproject.eu/collab/v0/collab/context/' + ctx + /permissions/;
   console.log('request to', url);
@@ -18,17 +17,17 @@ function is_collab_member(token, ctx, cb) {
       return cb(err, false);
     }
     console.log('ep_hbp_collaboratory_auth.is_collab_member result', data, typeof(data));
-    return cb(null, data.UPDATE);
+    return cb(null, data[permission]);
   });
 }
 
-function authorizePadAccess(url, user, cb) {
+function authorizePadAccess(url, user, permission, cb) {
   var ctx = url.substring(3);
   if (!uuid4.valid(ctx)) {
     console.log('ep_hbp_collaboratory_auth.authorize -> [false] invalid ctx', ctx);
     return cb([false]);
   }
-  return is_collab_member(user.token.accessToken, ctx, function(err, isMember) {
+  return has_collab_permission(user.token.accessToken, ctx, permission, function(err, isMember) {
     if (err) {
       console.log('ep_hbp_collaboratory_auth.authorize -> [false] request error', err);
       return cb([false]);
@@ -53,8 +52,12 @@ exports.authorize = function(hook_name, context, cb) {
     return cb([false]);
   }
 
+  if (context.req.url.indexOf('/ro/') === 0) {
+    return authorizePadAccess(context.req.url, user, 'VIEW', cb);
+  }
+
   if (context.req.url.indexOf('/p/') === 0) {
-    return authorizePadAccess(context.req.url, user, cb);
+    return authorizePadAccess(context.req.url, user, 'UPDATE', cb);
   }
 
   if (context.req.url.indexOf('/admin/') === 0) {
