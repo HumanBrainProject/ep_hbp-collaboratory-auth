@@ -1,0 +1,25 @@
+{
+  "name": "ep_hbp-collaboratory-auth",
+  "version": "0.1.0",
+  "description": "Provides authentication with HBP and authorization through collab context",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HumanBrainProject/ep_hbp-collaboratory-auth.git"
+  },
+  "keywords": [
+    "ehterpad",
+    "hbp",
+    "collaboratory",
+    "authentication"
+  ],
+  "author": "Olivier Amblet <olivier@amblet.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HumanBrainProject/ep_hbp-collaboratory-auth/issues"
+  },
+  "homepage": "https://github.com/HumanBrainProject/ep_hbp-collaboratory-auth#readme"
+}
