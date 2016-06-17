@@ -3,7 +3,7 @@
     {
       "name": "main",
       "hooks": {
-        "authorize": "ep_hbp-collaboratory-auth/index.js:authorize"
+        "authorize": "ep_hbp_collaboratory_auth/index.js:authorize"
       }
     }
   ]
