@@ -3,7 +3,8 @@
     {
       "name": "main",
       "hooks": {
-        "authorize": "ep_hbp_collaboratory_auth/index.js:authorize"
+        "authorize": "ep_hbp_collaboratory_auth/index.js:authorize",
+        "expressCreateServer": "ep_hbp_collaboratory_auth/readonly.js:expressCreateServer"
       }
     }
   ]

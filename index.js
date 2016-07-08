@@ -22,7 +22,11 @@ function has_collab_permission(token, ctx, permission, cb) {
 }
 
 function authorizePadAccess(url, user, permission, cb) {
-  var ctx = url.substring(3);
+  var matches = url.match(/\/(p|r)\/([0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12})/);
+  if (!matches) {
+    console.log('ep_hbp_collaboratory_auth.authorize -> [false] invalid URL');
+  }
+  var ctx = matches[2]
   if (!uuid4.valid(ctx)) {
     console.log('ep_hbp_collaboratory_auth.authorize -> [false] invalid ctx', ctx);
     return cb([false]);
@@ -52,7 +56,7 @@ exports.authorize = function(hook_name, context, cb) {
     return cb([false]);
   }
 
-  if (context.req.url.indexOf('/ro/') === 0) {
+  if (context.req.url.indexOf('/r/') === 0) {
     return authorizePadAccess(context.req.url, user, 'VIEW', cb);
   }
 
