@@ -1,6 +1,6 @@
 {
   "name": "ep_hbp_collaboratory",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Provides integration with HBP and authorization through collab context",
   "main": "index.js",
   "scripts": {
